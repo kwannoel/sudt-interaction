@@ -44,17 +44,24 @@ impl From<SysError> for Error {
 pub fn main() -> Result<(), Error> {
     // load current script
     // check verification branch is owner mode or normal mode
-    let script = load_script()?;
-    let args: Bytes = script.args().unpack();
+    let script = load_script()?; // Loads the script data structure
+    let args: Bytes = script.args().unpack(); // Grabs the arguments from there
 
     // return success if owner mode is true
-    if check_owner_mode(&args)? {
-        return Ok(());
+    if check_owner_mode(&args)? { // If arguments indicate that the cell is owner
+                                  // we are in owner mode...
+                                  // we also know the owner lock script will get run
+                                  // so as long as we used a proper lock script,
+                                  // this is secure.
+        return Ok(()); // Let the user do whatever, because they're the owner
+                       // This allows the owner to mint tokens.
     }
 
     // unpack the Script#args field
     // let args: Vec<u8> = script.args().unpack();
 
+    // Otherwise this cell is just a normal cell
+    // we should only permit
     let inputs_amount = collect_inputs_amount()?;
     let outputs_amount = collect_outputs_amount()?;
 

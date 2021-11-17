@@ -1,14 +1,14 @@
-# [[cells]]
-# name = "my_cell"
-# enable_type_id = false
-# location = { file = "build/release/my_cell" }
-#
-# # reference to on-chain cells
+[[cells]]
+name = "my-sudt"
+enable_type_id = false
+location = { file = "build/release/my-sudt" }
+
+# reference to on-chain cells
 # [[cells]]
 # name = "genesis_cell"
-# enable_type_id = false
+# enable_type_id = true
 # location = { tx_hash = "0x71a7ba8fc96349fea0ed3a5c47992e3b4084b031a42264a018e0072e8172e46c", index = 0 }
- 
+
 
 # # Dep group cells
 # [[dep_groups]]
@@ -18,10 +18,11 @@
 #   "genesis_cell"
 # ]
 
-# # Replace with your own lock if you want to unlock deployed cells.
-# # For example the secp256k1 lock
-# [lock]
+# Replace with your own lock if you want to unlock deployed cells.
+# For example the secp256k1 lock
+[lock]
 # code_hash = "0x9bd7e06f3ecf4be0f2fcd2188b23f1b9fcc88e5d4b65a8637b17723bbda3cce8"
+code_hash = "0x0f1fe7bc34d77d19a8a045c1b6a93fc42a0a78984c0489a4546853d8fb2a8466"
+args = "0x51175b677035e03611509b3053647d163c44b08e"
 # args = "0x0000000000000000000000000000000000000000"
-# hash_type = "type"
-
+hash_type = "type"
